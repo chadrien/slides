@@ -1,0 +1,22 @@
+{
+  "name": "slides",
+  "version": "0.1.0",
+  "description": "My slides",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chadrien/slides.git"
+  },
+  "author": "chadrien <chadrien@chadrien.fr>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chadrien/slides/issues"
+  },
+  "homepage": "http://chadrien.github.io/slides",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-copy": "~0.5.0",
+    "twitter-bootstrap-3.0.0": "~3.0.0",
+    "reveal.js": "~2.6.0",
+    "grunt-contrib-connect": "~0.6.0"
+  }
+}
