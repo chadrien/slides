@@ -1,0 +1,15 @@
+server {
+    listen 80;
+
+    server_name localhost;
+
+    root /usr/share/nginx/html;
+    index index.php;
+
+    location / {
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_index index.php;
+        fastcgi_pass {{FPM_IP}}:{{FPM_PORT}};
+    }
+}
