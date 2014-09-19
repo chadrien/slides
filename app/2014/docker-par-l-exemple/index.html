@@ -132,6 +132,12 @@ CMD ["/usr/sbin/nginx", "-c", "/etc/nginx/nginx.conf"]
 
     <section class="slide">
         <div>
+            <img src="{{BASE_URL}}/2014/docker-par-l-exemple/images/build.png" alt="" style="height:100%;width:auto;margin-top:-50px">
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
             <h2>On run !</h2>
             <pre class="code">
                 $ docker run --rm -P nginx
@@ -146,6 +152,12 @@ CONTAINER ID        IMAGE               COMMAND                CREATED          
                 * docker run -P pour dire d'exposer tous les ports spécifiés
                 dans le Dockerfile
             </footer>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <img src="{{BASE_URL}}/2014/docker-par-l-exemple/images/welcome.png" alt="" style="width:100%">
         </div>
     </section>
 
@@ -176,6 +188,12 @@ $ docker run --rm -P -v $(pwd):/usr/share/nginx/html nginx
             <footer>
                 * $(pwd) car chemin absolu requis
             </footer>
+        </div>
+    </section>
+
+    <section class="slide">
+        <div>
+            <img src="{{BASE_URL}}/2014/docker-par-l-exemple/images/volumes.png" alt="" style="width:100%">
         </div>
     </section>
 
