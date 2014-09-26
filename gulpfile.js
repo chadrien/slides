@@ -3,16 +3,21 @@ var gulp = require('gulp'),
     bowerFiles = require('main-bower-files'),
     es = require('event-stream');
 
+var appSrc = [
+    './app/**/*',
+    '!./app/**/demo/**/*'
+];
+
 gulp.task('dist', ['vendors'], function () {
     return dist('dist');
 });
 
 gulp.task('serve', ['server'], function () {
-    gulp.watch('./app/**/*', ['tmp-build', 'reload']);
+    gulp.watch(appSrc, ['tmp-build', 'reload']);
 });
 
 gulp.task('reload', function () {
-    return gulp.src('./app/**/*')
+    return gulp.src(appSrc)
         .pipe(g.connect.reload());
 });
 
@@ -39,7 +44,7 @@ gulp.task('tmp-vendors', function () {
 function dist(toFolder) {
     var baseUrl = getBaseUrl();
 
-    return gulp.src('./app/**/*')
+    return gulp.src(appSrc)
         .pipe(gulp.dest(toFolder))
         .pipe(es.wait(function () {
             gulp.src(toFolder + '/**/*.html')

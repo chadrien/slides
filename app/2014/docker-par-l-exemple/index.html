@@ -3,383 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <title>Docker par l'exemple</title>
-    <link rel="stylesheet" href="{{BASE_URL}}/vendors/screen.css">
     <style>
-        #Cover {
-            background-color: white;
-            background-image: url({{BASE_URL}}/2014/docker-par-l-exemple/images/docker-bg.png);
+        @font-face {
+            font-family: 'Poiret One';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Poiret One'), local('PoiretOne-Regular'), url(fonts/PoiretOne-Regular.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+        @font-face {
+            font-family: 'Bangers';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Bangers'), local('Bangers-Regular'), url(fonts/Bangers.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+
+        html, body {
+            font-size: 30px;
+            font-family: 'Poiret One';
+            color: white;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        h1 {
+            font-size: 40px;
+            color: #6AAACD;
+            text-shadow: 1px 0 0 white, 0 -1px 0 white, 0 1px 0 white, -1px 0 0 white;
+            font-family: 'Bangers';
+        }
+        pre {
+            white-space: pre-wrap;
+        }
+
+        .image img {
+            margin: 0 auto;
+            display: block;
+            width: 80%;
+        }
+
+        .remark-slide-content {
+            background-color: rgb(36, 120, 167);
+        }
+        .remark-notes {
+            font-family: 'Helvetica', sans-serif;
+            color: black;
+        }
+
+        #slide-cover {
+            background-image: url(images/docker-bg.png);
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
+            text-align: center;
         }
-
-        #Cover h2 {
-            margin:30px 0 0;
-            text-align:center;
-            font-size:70px;
+        #slide-cover h1 {
+            margin: 25% 0 0;
+            font-size: 70px;
             text-shadow: 1px 0 0 white, 0 -1px 0 white, 0 1px 0 white, -1px 0 0 white;
             color: rgb(46, 60, 66);
         }
-
-        .slide img {
-            width: 70%;
-            display: block;
-            margin: 0 auto;
+        #slide-cover p {
+            font-size: 40px;
+            text-shadow: 1px 0 0 black, 0 -1px 0 black, 0 1px 0 black, -1px 0 0 black;
         }
 
-        .slide pre.code {
-            max-height: 400px;
-            overflow: auto;
-            white-space: pre !important;
+        #slide-build .image img {
+            height: 370px;
+            width: auto;
         }
 
-        .slide img#win {
+        #slide-run .small .remark-code {
+            font-size: .44em;
+        }
+
+        #slide-bash .image img {
+            margin-top: 100px;
+        }
+
+        #slide-et-php {
+            text-align: center;
+        }
+        #slide-et-php h1 {
+            font-size: 70px;
+            margin: 35% 0 0;
+        }
+
+        #slide-final .win img {
             position: absolute;
-            top: 10%;
-            width: 20%;
-            transform: rotate(-25deg);
+            top: 35%;
         }
     </style>
 </head>
-<body class="list">
-    <header class="caption">
-		<h1>Docker par l'exemple</h1>
-		<p>Par <a href="https://twitter.com/chadrien">@chadrien</a></p>
-	</header>
-
-    <section class="slide cover" id="Cover">
-        <div>
-            <h2>Docker par l'exemple</h2>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>C'est quoi Docker ?</h2>
-            <ul>
-                <li>Conteneur d'applications</li>
-                <li class="next">Virtualisation au niveau de l'OS</li>
-                <li class="next">Environnements isolés</li>
-                <li class="next">Tourne sur tout Linux, soit 90% du parc mondial (source @chadrien)</li>
-            </ul>
-            <footer>
-                1. Application = mysql, apache, etc.
-                2. Plus besoin de virtualbox, VMWare, etc.
-                2. Seul le logiciel est virtualisé, pas le matériel
-                3. Grâce aux fonctionnalités de Linux
-                4. Par extension, nos applications tournent partout, quelle que soit la techno sur lesquelles elle repose
-            </footer>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>Dans le détail</h2>
-            <img src="{{BASE_URL}}/2014/docker-par-l-exemple/images/docker-filesystems-busyboxrw.png" alt="">
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>LOL NOPE !</h2>
-            <img src="{{BASE_URL}}/2014/docker-par-l-exemple/images/docker-filesystems-busyboxrw-nope.png" alt="">
-            <footer>
-                C'est cool et pis c'est tout
-                Si vous voulez plus de détails, allez voir la doc
-            </footer>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>Notre premier conteneur Nginx</h2>
-            <pre class="code">
-FROM ubuntu:latest
-
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update
-RUN apt-get -y upgrade
-
-RUN apt-get -y install nginx-full
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
-
-EXPOSE 80
-
-CMD ["/usr/sbin/nginx", "-c", "/etc/nginx/nginx.conf"]
-            </pre>
-            <footer>
-                * C'est par l'exemple on vous dit, du concret !
-                * DEBIAN_FRONTEND noninteractive parce que docker fait n'est pas
-                interractif (you don't say).
-                * apt-get -y, parce que non interractif, n'oublions pas
-                * "daemon off;" pour que nginx ne soit pas en daemon. Pourquoi ?
-                parce que Docker arrête le conteneur si le processus lancé par
-                s'arrête
-            </footer>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>On build !</h2>
-            <pre class="code">
-                $ docker build --rm -t nginx .
-            </pre>
-            <p>Et on attend (longtemps si c'est la première fois).</p>
-            <p>Quand c'est fini, on run !</p>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <img src="{{BASE_URL}}/2014/docker-par-l-exemple/images/build.png" alt="" style="height:100%;width:auto;margin-top:-50px">
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>On run !</h2>
-            <pre class="code">
-                $ docker run --rm -P nginx
-            </pre>
-            <p>On regarde la vie de notre beau conteneur</p>
-            <pre class="code">
-$ docker ps
-CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS                   NAMES
-55f566619b84        nginx:latest        "/usr/sbin/nginx -c    3 seconds ago       Up 2 seconds        0.0.0.0:49162->80/tcp   dreamy_jones
-            </pre>
-            <footer>
-                * docker run -P pour dire d'exposer tous les ports spécifiés
-                dans le Dockerfile
-            </footer>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <img src="{{BASE_URL}}/2014/docker-par-l-exemple/images/welcome.png" alt="" style="width:100%">
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>On run !</h2>
-            <p>Mais où est donc notre webroot ?</p>
-            <pre class="code">
-$ docker run --rm -i -t nginx bash
-            </pre>
-            <code>root /usr/share/nginx/html;</code>
-            <footer>
-                * -i => passage en mode interractif
-                * -t => on alloue un TTY
-            </footer>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>Partage de répertoire</h2>
-            <p>On rajouter une ligne à notre <code>Dockerfile</code></p>
-            <code>RUN rm -rf /usr/share/nginx/</code>
-            <p>On relance un conteneur, en liant cette fois ci les volumes !</p>
-            <pre class="code">
-$ docker run --rm -P -v $(pwd):/usr/share/nginx/html nginx
-            </pre>
-            <footer>
-                * $(pwd) car chemin absolu requis
-            </footer>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <img src="{{BASE_URL}}/2014/docker-par-l-exemple/images/volumes.png" alt="" style="width:100%">
-        </div>
-    </section>
-
-    <section class="slide shout">
-        <div>
-            <h2>Et php ?</h2>
-            <footer>
-                * Il y un conteneur pour ça ! (enfin pas encore, mais on va le faire quoi)
-            </footer>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>On prend les mêmes et on recommence</h2>
-            <pre class="code">
-FROM ubuntu:latest
-
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update
-RUN apt-get -y upgrade
-
-RUN apt-get -y install php5-fpm
-RUN sed -i 's/listen = \/var\/run\/php5-fpm.sock/listen = 9000/' /etc/php5/fpm/pool.d/www.conf
-
-EXPOSE 9000
-
-CMD ["/usr/sbin/php5-fpm", "-F"]
-            </pre>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>Lier les conteneurs</h2>
-            <p>Rien de plus facile !</p>
-            <pre class="code">
-$ docker run --rm -P --link tender_bardeen:fpm -v $(pwd):/usr/share/nginx/html nginx
-            </pre>
-            <p><code>tender_bardeen</code> est le nom de notre conteneur php-fpm, <code>fpm</code> est son alias au sein du conteneur nginx</p>
-            <p>Rappel, on peut retrouver le nom d'un conteneur via <code>docker ps</code></p>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>Les variables d'environnement</h2>
-            <p>Lorsque 2 conteneurs sont liés, des variables d'environnement "magiques" sont créées par Docker</p>
-            <pre class="code">
-$ docker run --rm -P -v $(pwd):/usr/share/nginx/html --link agitated_sinoussi:fpm nginx env
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-HOSTNAME=aab51d231030
-FPM_PORT=tcp://172.17.0.32:9000
-FPM_PORT_9000_TCP=tcp://172.17.0.32:9000
-FPM_PORT_9000_TCP_ADDR=172.17.0.32
-FPM_PORT_9000_TCP_PORT=9000
-FPM_PORT_9000_TCP_PROTO=tcp
-FPM_NAME=/thirsty_elion/fpm
-FPM_ENV_DEBIAN_FRONTEND=noninteractive
-HOME=/
-DEBIAN_FRONTEND=noninteractive
-            </pre>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>On fait marcher tout ensemble</h2>
-            <p>On modifie un peu le Dockerfile de nginx</p>
-            <pre class="code">
-FROM ubuntu:latest
-
-ENV DEBIAN_FRONTEND noninteractive
-
-RUN apt-get update
-RUN apt-get -y upgrade
-
-RUN apt-get -y install nginx-full
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
-
-RUN rm -rf /usr/share/nginx/html
-RUN rm /etc/nginx/sites-available/default
-ADD ./default /etc/nginx/sites-available/default
-
-ADD ./init.sh /init.sh
-RUN chmod +x /init.sh
-
-EXPOSE 80
-
-CMD ["/usr/sbin/nginx", "-c", "/etc/nginx/nginx.conf"]
-
-ENTRYPOINT ["/init.sh"]
-            </pre>
-            <footer>
-                * ENTRYPOINT : son nom parle, il s'agit d'une commande initiale,
-                à laquelle CMD sera passé en paramètre
-                ENTRYPOINT sert de bootstrap
-            </footer>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>On fait marcher tout ensemble</h2>
-            <pre class="code">
-server {
-    listen 80;
-
-    server_name localhost;
-
-    root /usr/share/nginx/html;
-    index index.php;
-
-    location / {
-        include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_index index.php;
-        fastcgi_pass {{FPM_IP}}:{{FPM_PORT}};
-    }
-}
-            </pre>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>On fait marcher tout ensemble</h2>
-            <pre class="code">
-#!/usr/bin/env bash
-
-sed -i "s/{{FPM_IP}}/$FPM_PORT_9000_TCP_ADDR/" /etc/nginx/sites-available/default
-sed -i "s/{{FPM_PORT}}/$FPM_PORT_9000_TCP_PORT/" /etc/nginx/sites-available/default
-
-exec $@
-            </pre>
-            <footer>
-                * Coucou les variables d'environnement !
-            </footer>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>Le bouquet final !</h2>
-            <pre class="code">
-$ docker run -P -v $(pwd):/usr/share/nginx/html -d --name fpm fpm
-$ docker run -P -v $(pwd):/usr/share/nginx/html -d --name nginx --link fpm:fpm nginx
-            </pre>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <img src="{{BASE_URL}}/2014/docker-par-l-exemple/images/phpinfo.png" alt="" style="height:100%;width:auto">
-            <img src="{{BASE_URL}}/2014/docker-par-l-exemple/images/win.gif" alt="" id="win">
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>Pour aller plus</h2>
-            <ul>
-                <li><code>docker run</code></li>
-                <li class="next"><code>fig</code></li>
-                <li class="next"><a href="https://github.com/docker/docker/pull/8062">https://github.com/docker/docker/pull/8062</a></li>
-                <li class="next"><a href="https://registry.hub.docker.com/">https://registry.hub.docker.com/</a></li>
-            </ul>
-            <footer>
-                * PR #8062 => docker exec !
-                * Le registry : trouvez et publiez des images docker !
-            </footer>
-        </div>
-    </section>
-
-    <section class="slide">
-        <div>
-            <h2>Merci !</h2>
-            <ul>
-                <li><a href="https://twitter.com/chadrien">@chadrien</a></li>
-                <li><a href="https://github.com/chadrien">chadrien</a></li>
-            </ul>
-        </div>
-    </section>
-
-    <div class="progress"><div></div></div>
-
-    <script src="{{BASE_URL}}/vendors/shower.min.js"></script>
+<body>
+    <script src="../../vendors/remark.js"></script>
+    <script type="text/javascript">
+      var slideshow = remark.create({
+        sourceUrl: 'content.md',
+        highlightStyle: 'monokai'
+      });
+    </script>
 </body>
 </html>

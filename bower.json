@@ -1,21 +1,22 @@
 {
-    "name": "slides",
-    "devDependencies": {
-        "bootstrap": "~3.2.0",
-        "shower-core": "~1.0.7",
-        "shower-ribbon": "~1.0.11"
-    },
-    "overrides": {
-        "shower-ribbon": {
-            "main": [
-                "styles/screen.css",
-                "images/linen.png",
-                "images/linen@2x.png",
-                "images/ribbon.svg",
-                "fonts/PTSans.Narrow.Bold.woff",
-                "fonts/PTSans.woff",
-                "fonts/PTSans.Bold.woff"
-            ]
-        }
+  "name": "slides",
+  "devDependencies": {
+    "bootstrap": "~3.2.0",
+    "shower-core": "~1.0.7",
+    "shower-ribbon": "~1.0.11",
+    "remark": "~0.6.5"
+  },
+  "overrides": {
+    "shower-ribbon": {
+      "main": [
+        "styles/screen.css",
+        "images/linen.png",
+        "images/linen@2x.png",
+        "images/ribbon.svg",
+        "fonts/PTSans.Narrow.Bold.woff",
+        "fonts/PTSans.woff",
+        "fonts/PTSans.Bold.woff"
+      ]
     }
+  }
 }
