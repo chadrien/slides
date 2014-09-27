@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Docker par l'exemple</title>
+    <style>
+        @font-face {
+            font-family: 'Poiret One';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Poiret One'), local('PoiretOne-Regular'), url(fonts/PoiretOne-Regular.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+        @font-face {
+            font-family: 'Bangers';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Bangers'), local('Bangers-Regular'), url(fonts/Bangers.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+
+        html, body {
+            font-size: 30px;
+            font-family: 'Poiret One';
+            color: white;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        h1 {
+            font-size: 40px;
+            color: #6AAACD;
+            text-shadow: 1px 0 0 white, 0 -1px 0 white, 0 1px 0 white, -1px 0 0 white;
+            font-family: 'Bangers';
+        }
+        pre {
+            white-space: pre-wrap;
+        }
+
+        .image img {
+            margin: 0 auto;
+            display: block;
+            width: 80%;
+        }
+
+        .remark-slide-content {
+            background-color: rgb(36, 120, 167);
+        }
+        .remark-notes {
+            font-family: 'Helvetica', sans-serif;
+            color: black;
+        }
+
+        #slide-cover {
+            background-image: url(images/docker-bg.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            text-align: center;
+        }
+        #slide-cover h1 {
+            margin: 25% 0 0;
+            font-size: 70px;
+            text-shadow: 1px 0 0 white, 0 -1px 0 white, 0 1px 0 white, -1px 0 0 white;
+            color: rgb(46, 60, 66);
+        }
+        #slide-cover p {
+            font-size: 40px;
+            text-shadow: 1px 0 0 black, 0 -1px 0 black, 0 1px 0 black, -1px 0 0 black;
+        }
+
+        #slide-build .image img {
+            height: 370px;
+            width: auto;
+        }
+
+        #slide-run .small .remark-code {
+            font-size: .44em;
+        }
+
+        #slide-bash .image img {
+            margin-top: 100px;
+        }
+
+        #slide-et-php {
+            text-align: center;
+        }
+        #slide-et-php h1 {
+            font-size: 70px;
+            margin: 35% 0 0;
+        }
+
+        #slide-final .win img {
+            position: absolute;
+            top: 35%;
+        }
+    </style>
+</head>
+<body>
+    <script src="../../vendors/remark.js"></script>
+    <script type="text/javascript">
+      var slideshow = remark.create({
+        sourceUrl: 'content.md',
+        highlightStyle: 'monokai'
+      });
+    </script>
+</body>
+</html>
