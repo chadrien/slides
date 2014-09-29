@@ -11,6 +11,7 @@ php:
   build: "./docker/php"
   volumes:
     - "./htdocs:/usr/share/nginx/html"
+    - "/var/run/docker.sock:/var/run/docker.sock"
   links:
     - db
 
