@@ -13,7 +13,7 @@ fi
 /usr/bin/n98-magerun --root-dir=${magentoRootDir} db:create
 
 portLinkedTo80=$(docker ps -a | grep magento_web_1 | grep -o -P "[0-9]+\->80" | tr "\->" "\n" | head -n 1)
-baseUrl="http://localhost:${portLinkedTo80}/"
+baseUrl="http://127.0.0.1:${portLinkedTo80}/"
 
 cd ${magentoRootDir}
 php -d max_execution_time=0 index.php
