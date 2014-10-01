@@ -68,11 +68,10 @@ RUN apt-get update
 RUN apt-get -y upgrade
 
 RUN apt-get -y install nginx-full
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 EXPOSE 80
 
-CMD ["/usr/sbin/nginx", "-c", "/etc/nginx/nginx.conf"]
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 ```
 
 ???
@@ -90,7 +89,7 @@ s'arrête
 # On build !
 
 ```bash
-$ docker build -t nginx .
+$ docker build -t demo_nginx .
 ```
 
 --
@@ -114,7 +113,7 @@ name: run
 # On run !
 
 ```bash
-$ docker run -P nginx
+$ docker run -P demo_nginx
 ```
 
 ???
@@ -131,8 +130,8 @@ On regarde la vie de notre beau conteneur
 .small[
 ```bash
 $ docker ps
-CONTAINER ID        IMAGE               COMMAND                CREATED             STATUS              PORTS                   NAMES
-55f566619b84        nginx:latest        /usr/sbin/nginx -c     3 seconds ago       Up 2 seconds        0.0.0.0:49162->80/tcp   dreamy_jones
+CONTAINER ID        IMAGE                    COMMAND                CREATED             STATUS              PORTS                   NAMES
+55f566619b84        demo_nginx:latest        /usr/sbin/nginx -c     3 seconds ago       Up 2 seconds        0.0.0.0:49162->80/tcp   dreamy_jones
 ```
 ]
 
@@ -164,7 +163,7 @@ Où se trouve le `webroot` ?
 --
 
 ```bash
-$ docker run -i -t nginx bash
+$ docker run -i -t demo_nginx bash
 ```
 
 --
@@ -190,13 +189,12 @@ RUN apt-get update
 RUN apt-get -y upgrade
 
 RUN apt-get -y install nginx-full
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 * RUN rm -rf /usr/share/nginx/html
 
 EXPOSE 80
 
-CMD ["/usr/sbin/nginx", "-c", "/etc/nginx/nginx.conf"]
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 ```
 
 ---
@@ -225,7 +223,7 @@ On créé un magnifique fichier HTML
 On relance un conteneur, en liant cette fois ci les volumes !
 
 ```bash
-$ docker run -P -v $(pwd):/usr/share/nginx/html nginx
+$ docker run -P -v $(pwd):/usr/share/nginx/html demo_nginx
 ```
 
 ???
@@ -272,7 +270,7 @@ On build, on run… On lie !
 # Lier les conteneurs
 
 ```bash
-$ docker run -P --link tender_bardeen:fpm nginx
+$ docker run -P --link tender_bardeen:fpm demo_nginx
 ```
 
 `tender_bardeen` est le nom de notre conteneur php-fpm, `fpm` est son alias au sein du conteneur nginx
@@ -291,7 +289,7 @@ Lorsque 2 conteneurs sont liés, des variables d'environnement "magiques" sont c
 --
 
 ```bash
-$ docker run -P --link tender_bardeen:fpm nginx env
+$ docker run -P --link tender_bardeen:fpm dmo_nginx env
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 HOSTNAME=aab51d231030
 * FPM_PORT=tcp://172.17.0.32:9000
@@ -320,7 +318,6 @@ RUN apt-get update
 RUN apt-get -y upgrade
 
 RUN apt-get -y install nginx-full
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 RUN rm -rf /usr/share/nginx/html
 * RUN rm /etc/nginx/sites-available/default
@@ -331,7 +328,7 @@ RUN rm -rf /usr/share/nginx/html
 
 EXPOSE 80
 
-CMD ["/usr/sbin/nginx", "-c", "/etc/nginx/nginx.conf"]
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 
 * ENTRYPOINT ["/init.sh"]
 ```
@@ -361,7 +358,7 @@ server {
         include fastcgi_params;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         fastcgi_index index.php;
-        fastcgi_pass {{FPM_IP}}:{{FPM_PORT}};
+        fastcgi_pass 127.0.0.1:9000;
     }
 }
 ```
@@ -377,7 +374,7 @@ server {
 
 sed -i "s/fastcgi_pass .*:.*;/fastcgi_pass $FPM_PORT_9000_TCP_ADDR:$FPM_PORT_9000_TCP_PORT;/" /etc/nginx/sites-available/default
 
-exec $@
+exec "$@"
 ```
 
 ???
@@ -399,8 +396,8 @@ phpinfo();
 # Le bouquet final
 
 ```bash
-$ docker run -P -v $(pwd):/usr/share/nginx/html -d --name fpm fpm
-$ docker run -P -v $(pwd):/usr/share/nginx/html -d --link fpm:fpm --name nginx nginx
+$ docker run -P -v $(pwd):/usr/share/nginx/html -d --name demo_fpm demo_fpm
+$ docker run -P -v $(pwd):/usr/share/nginx/html -d --link fpm:fpm --name demo_nginx demo_nginx
 ```
 
 ???
@@ -428,6 +425,10 @@ name: final
 --
 
 - [https://registry.hub.docker.com/](https://registry.hub.docker.com/)
+
+???
+
+- nginx officiel plutôt que build à la main
 
 ---
 
