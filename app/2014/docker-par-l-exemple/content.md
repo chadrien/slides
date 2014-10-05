@@ -4,6 +4,12 @@ name: cover
 
 [@chadrien](https://twitter.com/chadrien), développeur [@occitech](https://twitter.com/occitech)
 
+???
+
+- Pourquoi Docker ?
+- Environnement de développment
+- À l'avenir, environnement de prod ?
+
 ---
 
 # C'est quoi Docker ?
@@ -44,6 +50,10 @@ name: cover
 # Dans le détail
 
 .image[![](images/docker-filesystems-busyboxrw.png)]
+
+???
+
+- Mais en fait, OSEF
 
 ---
 
@@ -123,27 +133,25 @@ dans le Dockerfile
 
 --
 
-name: run
-
 On regarde la vie de notre beau conteneur
 
 .small[
 ```bash
 $ docker ps
-CONTAINER ID        IMAGE                    COMMAND                CREATED             STATUS              PORTS                   NAMES
-55f566619b84        demo_nginx:latest        /usr/sbin/nginx -c     3 seconds ago       Up 2 seconds        0.0.0.0:49162->80/tcp   dreamy_jones
+CONTAINER ID        IMAGE               COMMAND
+049e5bea3a13        demo_nginx:latest   /usr/sbin/nginx -g
+CREATED             STATUS              PORTS
+5 seconds ago       Up 2 seconds        0.0.0.0:49153->80/tcp
+NAMES
+grave_thompson
 ```
 ]
 
 --
 
-name: run
-
-Consultons l'URL `http://localhost:49162`
+Consultons l'URL `http://localhost:49153`
 
 --
-
-name: run
 
 .image[
 ![](images/welcome.png)
@@ -190,12 +198,17 @@ RUN apt-get -y upgrade
 
 RUN apt-get -y install nginx-full
 
-* RUN rm -rf /usr/share/nginx/html
+* VOLUME ["/usr/share/nginx/html"]
 
 EXPOSE 80
 
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 ```
+
+???
+
+- The `VOLUME` instruction will create a mount point with the specified name and
+ mark it as holding externally mounted volumes from native host or other containers.
 
 ---
 
@@ -258,6 +271,8 @@ RUN apt-get -y upgrade
 RUN apt-get -y install php5-fpm
 RUN sed -i 's/listen = \/var\/run\/php5-fpm.sock/listen = 9000/' /etc/php5/fpm/pool.d/www.conf
 
+VOLUME ["/usr/share/nginx/html"]
+
 EXPOSE 9000
 
 CMD ["/usr/sbin/php5-fpm", "-F"]
@@ -289,7 +304,7 @@ Lorsque 2 conteneurs sont liés, des variables d'environnement "magiques" sont c
 --
 
 ```bash
-$ docker run -P --link tender_bardeen:fpm dmo_nginx env
+$ docker run -P --link tender_bardeen:fpm demo_nginx env
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 HOSTNAME=aab51d231030
 * FPM_PORT=tcp://172.17.0.32:9000
@@ -318,13 +333,11 @@ RUN apt-get update
 RUN apt-get -y upgrade
 
 RUN apt-get -y install nginx-full
-
-RUN rm -rf /usr/share/nginx/html
-* RUN rm /etc/nginx/sites-available/default
 * ADD ./default /etc/nginx/sites-available/default
 
+VOLUME ["/usr/share/nginx/html"]
+
 * ADD ./init.sh /init.sh
-* RUN chmod +x /init.sh
 
 EXPOSE 80
 
@@ -396,8 +409,8 @@ phpinfo();
 # Le bouquet final
 
 ```bash
-$ docker run -P -v $(pwd):/usr/share/nginx/html -d --name demo_fpm demo_fpm
-$ docker run -P -v $(pwd):/usr/share/nginx/html -d --link fpm:fpm --name demo_nginx demo_nginx
+$ docker run -v $(pwd):/usr/share/nginx/html -d --name demo_fpm demo_fpm
+$ docker run -P -v $(pwd):/usr/share/nginx/html -d --link demo_fpm:fpm --name demo_nginx demo_nginx
 ```
 
 ???
