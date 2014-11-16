@@ -6,6 +6,10 @@ name: cover
 
 [@chadrien](https://twitter.com/chadrien)
 
+???
+
+- Qui a déjà fait des TU ?
+
 ---
 
 # Disclaimer
@@ -37,15 +41,17 @@ name: ecg
 
 ???
 
-- Qui a déjà fait des TU ?
 - Petites crises de tachycardie
 - Médecin, cardiographie, épreuve d'effort, appareil pour monitorer pendant 24h
 - Reformulation : j'ai ouvert un ticket auprès de mon médecin pour signaler ce qui
 me semblait être une anomalie, suite à quoi il a couvert ça avec des tests
 
 ---
+name: center-long-title
 
 # Dis Jamy, c'est quoi un test unitaire ?
+
+--
 
 > En programmation informatique, le test unitaire (ou "T.U.") est une procédure permettant de vérifier le bon fonctionnement d'une partie précise d'un logiciel ou d'une portion d'un programme (appelée « unité » ou « module »).
 >
@@ -67,20 +73,40 @@ name: wiki-important
 - <q>… d'une partie précise</q>
 
 ---
+name: center-long-title
 
-# Pourquoi faire des tests
+# Pourquoi faire des tests ?
 
 --
 
-- Vérifier que le code fait ce qu'il est sensé faire
+- Vérifier que le code fait ce qu'il est censé faire
+
+???
+
+- Mais attention à ne pas tester n'importe quoi. En réalité ce qu'on veut
+tester ce sont les fonctionnalités de notre application. Quel intérêt de véfirier
+qu'une méthode fait la somme de plusieurs nombres ? Aucun, je sais faire une addition.
+Quel intérêt de vérifier que je sais calculer correctement le montant de mon
+panier ? Vital, c'est le cœur de mon métier.
 
 --
 
   - ni plus, ni moins
 
+???
+
+- Faire un test trop petit ne sert à rien
+- Faire un test trop gros nous empêchera de savoir ce qui ne va pas : si un test
+qui teste trop de choses échoue, comment savoir ce qui est cassé ?
+
 --
 
 - Détecter les bugs au plus tôt
+
+???
+
+- Le test est une arme anti-dette technique. Elle ne l'éradique pas, mais elle
+peut y contribuer
 
 --
 
@@ -97,6 +123,165 @@ name: wiki-important
 ???
 
 - Émergence d'un meilleur design, les tests sont une forme de documentation, etc.
+
+---
+name: center-long-title
+
+# Pourquoi on ne fait pas de tests ?
+
+--
+
+- J'ai pas le temps
+
+???
+
+- Souvent les tests (et le test first surtout), va permettre l'émergence d'un
+design de code qui vous aurez certainement pris beaucoup plus de temps à faire
+"from scratch" et en navigant à vue
+
+--
+
+- C'est une perte de temps
+
+???
+
+- Les tests permettent de se concentrer sur les fonctionnalités réels de notre
+application et évitent de se perdre dans les éternels "non mais attends, fait je
+vais plutôt faire mon code comme ça, avec 60 niveaux d'abstraction, comma ça, si
+le client veut saisir une donnée sous la pleine lune enroulé dans du jambon, il
+peut !". C'est ça la vrai perte de temps
+
+--
+
+- De toute façon mon code marche, pas besoin de tester
+
+???
+
+- La pire excuse. Oui il marche aujourd'hui, et encore, les cas limites sont-ils
+toujours prévus ? Le fameux, "aaaaah oui c'est vrai que dans ce cas là, ça bug".
+Et au moment de faire évoluer l'application, vous êtes bien sûr de ne jamais
+introduire de régression ? "Ah merde ça marchait avant la mise en prod ça"
+
+---
+name: center-title
+
+# Faites des tests&nbsp;!
+
+---
+name: center-long-title
+
+# À quoi ça ressemble un test ?
+
+---
+
+```php
+class Cart
+{
+    public function getTotal()
+    {
+        return array_reduce(
+            $this->products,
+            function ($total, $product) {
+                return $total + $product->getPrice();
+            }
+        )
+    }
+}
+```
+
+```php
+function testCartGetTotal() {
+    $product1 = newRandomProduct();
+    $product2 = newRandomProduct();
+
+    $cart = new Cart();
+    $cart->addProduct($product1);
+    $cart->addProduct($product2);
+
+    $expected = $product1->getPrice() + $product2->getPrice();
+
+    if ($expected != $cart->getTotal) {
+        return false
+    }
+
+    return true;
+}
+```
+
+???
+
+- C'est bien mignon, mais on ne va pas tout faire à la main ?
+
+---
+name: center-title
+
+# PHPUnit
+
+--
+
+- xUnit
+
+???
+
+- C'est une base de framework de test, qui vient de SUnit pour smalltalk
+- Il comprend donc…
+
+--
+
+- un runner
+
+???
+
+- Capable d'exécuter les tests écrits pour PHPUnit
+
+--
+
+- un TestCase
+
+???
+
+- La classe de test de base, dont tous les tests vont hériter
+
+--
+
+- des fixtures
+
+???
+
+- Permettent de définir des préconditions afin de mettre de se mettre dans un
+état qui va nous permettre d'exécuter nos tests. Attention à rendre un état
+"propre" après avoir fini un test
+
+--
+
+- des tests suite
+
+???
+
+- Une test suite est un ensemble de tests partageant les mêmes fixtures. L'ordre
+des tests ne doit pas avoir d'importance !
+
+--
+
+- L'exécution des tests : `setup`, `test`, `teardown`
+
+--
+
+- Un ou des formatters
+
+???
+
+- Les formatters ont pour rôle de formatter les résultats des tests : texte brut,
+xml, json, etc.
+
+--
+
+- des assertions
+
+???
+
+- Une assertion est une fonction qui va permetter de vérifier un état (
+assertEquals, assertContains, assertExists, etc.)
 
 ---
 name: big-font
@@ -147,7 +332,7 @@ name: cover
 
 ![Logo de Magento](images/magento-logo.png)
 
-[@chadrien](https://twitter.com/chadrien), développeur [@occitech](https://twitter.com/occitech)
+[@chadrien](https://twitter.com/chadrien)
 
 ???
 
