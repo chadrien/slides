@@ -4,7 +4,7 @@ name: cover
 
 ![Logo de Magento](images/magento-logo.png)
 
-[@chadrien](https://twitter.com/chadrien), développeur [@occitech](https://twitter.com/occitech)
+[@chadrien](https://twitter.com/chadrien)
 
 ---
 
