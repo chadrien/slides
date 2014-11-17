@@ -430,8 +430,8 @@ name: bigger-font
 --
 name: bigger-font
 
-  - Si produit non en promo, retourne les metadata “classiques”
-  - Si produit en promo, retourne les même metadata PLUS des metadata spécifiques
+  - Si produit non en promo, retourne les microdata “classiques”
+  - Si produit en promo, retourne les même microdata PLUS des microdata spécifiques
 
 ---
 name: small-code

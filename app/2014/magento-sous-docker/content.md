@@ -72,9 +72,9 @@ name: center-title
 --
 name: big-font
 
+- Pour partager un environnement de développement identique entre tous les dévelopeurs
 - Pour remplacer Vagrant/Virtualbox
 - Pour avoir un environnement de dev qui ressemble __pour de vrai__ à la prod
-- Pour partager un environnement de développement identique entre tous les dévelopeurs
 
 ???
 
