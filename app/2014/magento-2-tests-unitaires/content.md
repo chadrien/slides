@@ -200,8 +200,8 @@ function testCartGetTotal() {
 
     $expected = $product1->getPrice() + $product2->getPrice();
 
-    if ($expected != $cart->getTotal) {
-        return false
+    if ($expected != $cart->getTotal()) {
+        return false;
     }
 
     return true;
@@ -447,7 +447,7 @@ use Magento\Test\BaseTestCase;
 class MicrodataTest extends BaseTestCase
 {
     private $SUT;
-    private $productData = ['name' => 'Magento EE', 'price' => '100000.00'];
+    private $productData = ['name' => 'Magento EE', 'price' => '100000.00', 'finalPrice' => '100000.00'];
 
     public function setUp() { /* Magic */ }
     private function addProductToRegistry() { /* Magic */ }
@@ -560,7 +560,7 @@ class Microdata extends Template
             'name' => $product->getName(),
             'offers' => [
                 'url' => 'http://schema.org/Offer',
-                'price' => $product->getPrice(),
+                'price' => $product->getFinalPrice(),
             ],
         ]];
     }
@@ -598,7 +598,7 @@ use Magento\Test\BaseTestCase;
 class MicrodataTest extends BaseTestCase
 {
     private $SUT;
-    private $productData = ['name' => 'Magento EE', 'price' => '100000.00'];
+    private $productData = ['name' => 'Magento EE', 'price' => '100000.00', 'price' => '100000.00'];
 
     public function setUp() { /* Magic */ }
     private function addProductToRegistry() { /* Magic */ }
@@ -683,13 +683,12 @@ class Microdata extends Template
             'name' => $product->getName(),
             'offers' => [
                 'url' => 'http://schema.org/Offer',
-                'price' => $product->getPrice(),
+                'price' => $product->getFinalPrice(),
             ],
         ]];
 
         if($product->getFinalPrice() < $product->getPrice() && $product->getSpecialToDate()) {
             $microdata['rootScope']['offers']['priceValidUntil'] = $product->getSpecialToDate();
-            $microdata['rootScope']['offers']['price'] = $product->getFinalPrice();
         }
 
         return $microdata;
@@ -742,7 +741,7 @@ class Microdata extends Template
             'name' => $product->getName(),
             'offers' => [
                 'url' => 'http://schema.org/Offer',
-                'price' => $product->getPrice(),
+                'price' => $product->getFinalPrice(),
             ],
         ]];
 
@@ -759,7 +758,6 @@ class Microdata extends Template
     private function addSaleMicrodata(\Magento\Catalog\Model\Product $product, array $microdata)
     {
         $microdata['rootScope']['offers']['priceValidUntil'] = $product->getSpecialToDate();
-        $microdata['rootScope']['offers']['price'] = $product->getFinalPrice();
         return $microdata;
     }
 }
