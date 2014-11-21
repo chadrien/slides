@@ -139,6 +139,7 @@ db:
   image: mysql
   environment:
     MYSQL_ROOT_PASSWORD: "root"
+    MYSQL_DATABASE: "magento"
 ```
 
 --
