@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Présentation de Docker</title>
+    <style>
+        @font-face {
+          font-family: 'Comfortaa';
+          font-style: normal;
+          font-weight: 300;
+          src: local('Comfortaa Light'), local('Comfortaa-Light'), url(font/comfortaa.woff2) format('woff2');
+          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+        @font-face {
+          font-family: 'Comfortaa';
+          font-style: normal;
+          font-weight: 400;
+          src: local('Comfortaa'), local('Comfortaa-Regular'), url(font/comfortaa-normal.woff2) format('woff2');
+          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+        @font-face {
+          font-family: 'Comfortaa';
+          font-style: normal;
+          font-weight: 700;
+          src: local('Comfortaa Bold'), local('Comfortaa-Bold'), url(font/comfortaa-bold.woff2) format('woff2');
+          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        h1 {
+            font-size: 40px;
+            color: #6AAACD;
+            text-shadow: 1px 0 0 white, 0 -1px 0 white, 0 1px 0 white, -1px 0 0 white;
+        }
+        pre {
+            white-space: pre-wrap;
+        }
+
+        .image img {
+            margin: 0 auto;
+            display: block;
+            width: 80%;
+        }
+
+        .remark-slide {
+            background-color: #676056;
+            color: white;
+            font-family: 'Comfortaa';
+            font-size: 30px;
+        }
+        .remark-slide-content {
+            background-color: rgb(36, 120, 167);
+            font-size: 30px;
+        }
+        .remark-notes {
+            font-family: 'Helvetica', sans-serif;
+            color: black;
+        }
+
+        #slide-center-title h1 {
+          text-align: center;
+          font-size: 100px;
+          margin-top: 30%;
+        }
+        #slide-center-long-title h1 {
+          text-align: center;
+          font-size: 100px;
+          margin-top: 20%;
+        }
+        #slide-big-text p {
+          font-size: 70px;
+          font-weight: bold;
+        }
+        #slide-center p {
+          text-align: center;
+        }
+
+        #slide-cover {
+          background-image: url(images/docker-bg.png);
+        }
+        #slide-cover, #slide-end {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            text-align: center;
+        }
+        #slide-cover h1, #slide-end h1 {
+            margin: 20% 0 0;
+            font-size: 70px;
+            text-shadow: 1px 0 0 white, 0 -1px 0 white, 0 1px 0 white, -1px 0 0 white;
+            color: rgb(46, 60, 66);
+        }
+        #slide-cover p, #slide-end p {
+            font-size: 40px;
+            text-shadow: 1px 0 0 black, 0 -1px 0 black, 0 1px 0 black, -1px 0 0 black;
+            color: white;
+        }
+
+        #slide-brands-logos p {
+          margin: 14px;
+          display: inline-block;
+          background: white;
+          padding: 10px;
+        }
+        #slide-brands-logos img {
+          vertical-align: middle;
+          height: 150px;
+        }
+
+        #slide-nabila {
+          background: white;
+        }
+        #slide-nabila img {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          margin-left: -5rem;
+        }
+
+        #slide-versus img {
+          margin: 13% 8%;
+        }
+
+        #slide-docker-cycle p {
+          text-align: center;
+        }
+        #slide-docker-cycle img {
+          height: 460px;
+        }
+
+        #slide-build-image p, #slide-build-image pre {
+          margin: -20px 0;
+        }
+    </style>
+</head>
+<body>
+    <script src="../../vendors/remark.js"></script>
+    <script type="text/javascript">
+      var slideshow = remark.create({
+        sourceUrl: 'content.md',
+        highlightStyle: 'monokai'
+      });
+    </script>
+</body>
+</html>
