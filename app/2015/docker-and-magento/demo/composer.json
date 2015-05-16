@@ -1,0 +1,23 @@
+{
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "http://packages.firegento.com"
+		}
+	],
+	"require": {
+		"bragento/magento-composer-installer": "~1",
+		"magento/core": "1.9.1.1-patch1"
+	},
+	"require-dev": {
+		"colinmollenhour/modman": "1.12",
+		"aschroder/smtp_pro": "2.0.5"
+	},
+	"scripts": {
+		"post-install-cmd": "make modman",
+		"post-update-cmd": "make modman"
+	},
+	"extra": {  
+		"magento-root-dir": "htdocs"
+	}
+}

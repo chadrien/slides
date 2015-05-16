@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Magento and Docker : it’s a kind of magic</title>
+  <style>
+  @font-face {
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Comfortaa Light'), local('Comfortaa-Light'), url(font/comfortaa.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+  }
+  @font-face {
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Comfortaa'), local('Comfortaa-Regular'), url(font/comfortaa-normal.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+  }
+  @font-face {
+    font-family: 'Comfortaa';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Comfortaa Bold'), local('Comfortaa-Bold'), url(font/comfortaa-bold.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+  }
+
+  a {
+    color: inherit;
+  }
+  h1 {
+    font-size: 40px;
+    color: #ef672f;
+  }
+  pre {
+    white-space: pre-wrap;
+  }
+  blockquote {
+    padding: 0 20px;
+    text-align: justify;
+    border: 1px solid #676056;
+  }
+  cite {
+    text-align: right;
+    display: block;
+  }
+  .remark-slide {
+    background-color: #676056;
+    color: #676056;
+    font-family: 'Comfortaa';
+  }
+  .remark-slide-content {
+    padding: 1rem 4rem 1rem 4rem;
+    font-size: 30px;
+  }
+  .remark-slide-content img {
+    max-width: 100%;
+  }
+  .remark-slide-number {
+    font-size: 20px;
+  }
+  .remark-code {
+    font-size: 17px;
+  }
+  #slide-small-code .remark-code {
+    font-size: 16px;
+  }
+  #slide-smaller-code .remark-code {
+    font-size: 14px;
+  }
+  #slide-even-smaller-code .remark-code {
+    font-size: 13px;
+  }
+
+  #slide-cover {
+    padding-top: 75px;
+    text-align: center;
+  }
+  #slide-cover img {
+    margin: 40px 0;
+    vertical-align: middle;
+  }
+  #slide-cover img:first-child {
+    margin-right: 50px;
+  }
+  #slide-cover img:last-child {
+    height: 150px;
+  }
+
+  #slide-big-font h1 {
+    margin-bottom: 15%;
+  }
+  #slide-big-font {
+    font-size: 40px;
+  }
+  #slide-bigger-font {
+    font-size: 100px;
+  }
+  #slide-bigger-font p {
+    text-align: center;
+  }
+  #slide-center-title h1 {
+    text-align: center;
+    font-size: 100px;
+    margin-top: 30%;
+  }
+
+  #slide-brand-logos img {
+    vertical-align: middle;
+    margin: 40px;
+    display: inline-block;
+    height: 150px;
+  }
+
+  #slide-image img {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    margin-left: -1.6rem;
+  }
+  #slide-image-wide img {
+    position: absolute;
+    top: 4rem;
+    width: 100%;
+    margin-left: -4rem;
+  }
+  </style>
+</head>
+<body>
+  <script src="../../vendors/remark.js"></script>
+  <script type="text/javascript">
+  var slideshow = remark.create({
+    sourceUrl: 'content.md',
+    highlightStyle: 'monokai'
+  });
+  </script>
+</body>
+</html>
