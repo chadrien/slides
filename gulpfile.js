@@ -24,7 +24,8 @@ gulp.task('server', ['tmp-build'], function () {
     g.connect.server({
         root: '.tmp',
         livereload: true,
-        port: 3000
+        port: 3000,
+        host: '0.0.0.0'
     });
 });
 
