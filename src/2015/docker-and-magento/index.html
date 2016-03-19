@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Les tests unitaires dans Magento 2</title>
+  <title>Magento and Docker : it’s a kind of magic</title>
   <style>
   @font-face {
     font-family: 'Comfortaa';
@@ -54,6 +54,9 @@
     padding: 1rem 4rem 1rem 4rem;
     font-size: 30px;
   }
+  .remark-slide-content img {
+    max-width: 100%;
+  }
   .remark-slide-number {
     font-size: 20px;
   }
@@ -69,16 +72,6 @@
   #slide-even-smaller-code .remark-code {
     font-size: 13px;
   }
-  #slide-center-title h1 {
-    text-align: center;
-    font-size: 100px;
-    margin-top: 30%;
-  }
-  #slide-center-long-title h1 {
-    text-align: center;
-    font-size: 100px;
-    margin-top: 20%;
-  }
 
   #slide-cover {
     padding-top: 75px;
@@ -86,72 +79,55 @@
   }
   #slide-cover img {
     margin: 40px 0;
+    vertical-align: middle;
+  }
+  #slide-cover img:first-child {
+    margin-right: 50px;
+  }
+  #slide-cover img:last-child {
+    height: 150px;
   }
 
   #slide-big-font h1 {
     margin-bottom: 15%;
   }
   #slide-big-font {
-    font-size: 50px;
+    font-size: 40px;
   }
   #slide-bigger-font {
-    font-size: 40px;
+    font-size: 100px;
   }
-
-  #slide-ecg img {
-    max-width: 100%;
-    max-height: 100%;
+  #slide-bigger-font p {
+    text-align: center;
   }
-
-  #slide-wiki-important {
-    padding-top: 20%;
-  }
-  #slide-wiki-important ul {
-    list-style: none;
-    color: #ef672f;
-    font-size: 40px;
-  }
-
-  #slide-red {
-    background: red;
-    color: white;
-  }
-  #slide-green {
-    background: green;
-    color: white;
-  }
-  #slide-red h1, #slide-green h1 {
-    color: white;
+  #slide-center-title h1 {
     text-align: center;
     font-size: 100px;
     margin-top: 30%;
   }
 
-  #slide-du-code h1 {
-    text-align: center;
-    font-size: 100px;
-    margin-top: 30%;
+  #slide-brand-logos img {
+    vertical-align: middle;
+    margin: 40px;
+    display: inline-block;
+    height: 150px;
   }
 
-  .red-block, .green-block {
+  #slide-image img {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    margin-left: -1.6rem;
+  }
+  #slide-image-wide img {
+    position: absolute;
+    top: 4rem;
     width: 100%;
-    height: 100px;
-  }
-  .red-block {
-    background-color: red;
-  }
-  .green-block {
-    background-color: green;
+    margin-left: -4rem;
   }
   </style>
 </head>
 <body>
-  <script src="../../vendors/remark.js"></script>
-  <script type="text/javascript">
-  var slideshow = remark.create({
-    sourceUrl: 'content.md',
-    highlightStyle: 'monokai'
-  });
-  </script>
+<script src="app.js"></script>
 </body>
 </html>

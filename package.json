@@ -1,23 +1,25 @@
 {
-  "name": "slides",
-  "version": "0.1.0",
-  "description": "My slides",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/chadrien/slides.git"
+  "scripts": {
+    "dev": "gulp dev",
+    "build": "gulp build"
   },
-  "author": "chadrien <chadrien@chadrien.fr>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/chadrien/slides/issues"
+  "dependencies": {
+    "remark": "github:gnab/remark#v0.13.0",
+    "reveal.js": "^3.2.0"
   },
-  "homepage": "http://chadrien.github.io/slides",
   "devDependencies": {
-    "bower": "^1.3.12",
-    "grunt-contrib-connect": "~0.6.0",
-    "gulp": "^3.8.8",
-    "gulp-connect": "^2.0.6",
-    "gulp-load-plugins": "^0.6.0",
-    "main-bower-files": "^2.0.0"
+    "babel-core": "^6.7.2",
+    "babel-preset-es2015": "^6.6.0",
+    "css-loader": "^0.23.1",
+    "event-stream": "^3.3.2",
+    "exports-loader": "^0.6.3",
+    "file-loader": "^0.8.5",
+    "glob": "^7.0.3",
+    "gulp": "^3.9.1",
+    "gulp-cli": "^1.2.1",
+    "gulp-watch": "^4.3.5",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.7",
+    "webpack-stream": "^3.1.0"
   }
 }
