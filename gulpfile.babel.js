@@ -1,4 +1,5 @@
 import gulp from 'gulp'
+import serve from 'gulp-server-livereload'
 import {dirname} from 'path'
 import glob from 'glob'
 import webpack from 'webpack-stream'
@@ -10,6 +11,9 @@ gulp.task(`build`, [`webpack`, `copy`])
 gulp.task(`dev`, [`build`], () => {
   gulp.watch([`src/**/*.js`], [`webpack`])
   gulp.watch([`src/**/*`, `!src/**/*.js`], [`copy`])
+  
+  return gulp.src(`dist`)
+    .pipe(serve({livereload: true}))
 })
 
 gulp.task(`webpack`, () => {

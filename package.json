@@ -17,6 +17,7 @@
     "glob": "^7.0.3",
     "gulp": "^3.9.1",
     "gulp-cli": "^1.2.1",
+    "gulp-server-livereload": "^1.7.3",
     "gulp-watch": "^4.3.5",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
