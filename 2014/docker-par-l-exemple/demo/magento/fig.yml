@@ -1,0 +1,21 @@
+web:
+  build: "./docker/web"
+  volumes:
+    - "./htdocs:/usr/share/nginx/html"
+  ports:
+    - 80
+  links:
+    - php
+
+php:
+  build: "./docker/php"
+  volumes:
+    - "./htdocs:/usr/share/nginx/html"
+    - "/var/run/docker.sock:/var/run/docker.sock"
+  links:
+    - db
+
+db:
+  image: mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: root

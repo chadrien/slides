@@ -1,0 +1,28 @@
+{
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.firegento.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.24",
+        "ext-pdo_mysql": "*",
+        "ext-SimpleXML": "*",
+        "ext-mcrypt": "*",
+        "ext-hash": "*",
+        "ext-gd": "*",
+        "ext-dom": "*",
+        "ext-iconv": "*",
+        "ext-curl": "*",
+        "ext-soap": "*",
+        "n98/magerun": "~1.91",
+        "magento/core": "1.9.*"
+    },
+    "extra": {
+        "magento-root-dir": "htdocs/",
+        "magento-force": 1,
+        "magento-deploystrategy": "link"
+    }
+}

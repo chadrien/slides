@@ -1,0 +1,29 @@
+db:
+    image: mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: ffe72ec7dea4ea12439f
+        MYSQL_DATABASE: magento-demo
+        MYSQL_USER: magento-demo
+        MYSQL_PASSWORD: ce1d24b8e7e7ab46b0c2
+
+web:
+    image: occitech/magento:php5.5-apache
+    ports:
+        - 80
+    links:
+        - db
+        - mail
+    volumes:
+        - .:/var/www
+
+phpmyadmin:
+    image: maxexcloo/phpmyadmin
+    ports:
+        - 80
+    links:
+        - db:mariadb
+
+mail:
+    image: chadrien/mailcatcher:0.5.12
+    ports:
+        - 1080

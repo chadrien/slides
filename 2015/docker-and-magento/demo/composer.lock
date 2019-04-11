@@ -1,0 +1,322 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "fae86de57661f7c617d4b731a904efee",
+    "packages": [
+        {
+            "name": "bragento/magento-composer-installer",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bragento/bragento-composer-installer.git",
+                "reference": "e185d188425238a2d078bd79f9116a3926a75673"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bragento/bragento-composer-installer/zipball/e185d188425238a2d078bd79f9116a3926a75673",
+                "reference": "e185d188425238a2d078bd79f9116a3926a75673",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "~1",
+                "symfony/filesystem": "~2"
+            },
+            "replace": {
+                "magento-hackathon/magento-composer-installer": "*"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "*",
+                "composer/composer": "*@dev",
+                "mikey179/vfsstream": "*",
+                "phpunit/phpunit": "*"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Bragento\\Magento\\Composer\\Installer\\Plugin",
+                "branch-alias": {
+                    "dev-develop": "1.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bragento\\Magento\\Composer\\Installer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "David Verholen",
+                    "email": "david.verholen@brandung.de",
+                    "homepage": "http://www.agentur-brandung.de"
+                }
+            ],
+            "description": "Composer installer for Magento modules",
+            "homepage": "https://github.com/bragento/bragento-composer-installer",
+            "keywords": [
+                "bragento",
+                "brandung",
+                "composer",
+                "installer",
+                "magento"
+            ],
+            "time": "2015-02-28 14:42:03"
+        },
+        {
+            "name": "magento/core",
+            "version": "1.9.1.1-patch1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bragento/magento-core.git",
+                "reference": "6c31124a7acdf3f0c1e20d5ffe5ce5fcc4f205fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bragento/magento-core/zipball/6c31124a7acdf3f0c1e20d5ffe5ce5fcc4f205fb",
+                "reference": "6c31124a7acdf3f0c1e20d5ffe5ce5fcc4f205fb",
+                "shasum": ""
+            },
+            "type": "magento-core",
+            "extra": {
+                "map": [
+                    [
+                        "app",
+                        "app"
+                    ],
+                    [
+                        "downloader",
+                        "downloader"
+                    ],
+                    [
+                        "errors",
+                        "errors"
+                    ],
+                    [
+                        "includes",
+                        "includes"
+                    ],
+                    [
+                        "js",
+                        "js"
+                    ],
+                    [
+                        "lib",
+                        "lib"
+                    ],
+                    [
+                        "media",
+                        "media"
+                    ],
+                    [
+                        "pkginfo",
+                        "pkginfo"
+                    ],
+                    [
+                        "shell",
+                        "shell"
+                    ],
+                    [
+                        "skin",
+                        "skin"
+                    ],
+                    [
+                        "var",
+                        "var"
+                    ],
+                    [
+                        ".htaccess",
+                        ".htaccess"
+                    ],
+                    [
+                        "api.php",
+                        "api.php"
+                    ],
+                    [
+                        "cron.php",
+                        "cron.php"
+                    ],
+                    [
+                        "cron.sh",
+                        "cron.sh"
+                    ],
+                    [
+                        "favicon.ico",
+                        "favicon.ico"
+                    ],
+                    [
+                        "get.php",
+                        "get.php"
+                    ],
+                    [
+                        "index.php",
+                        "index.php"
+                    ],
+                    [
+                        "install.php",
+                        "install.php"
+                    ],
+                    [
+                        "mage",
+                        "mage"
+                    ]
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "description": "Magento Core",
+            "homepage": "http://www.magentocommerce.com",
+            "time": "2015-05-15 08:14:35"
+        },
+        {
+            "name": "symfony/filesystem",
+            "version": "v2.6.7",
+            "target-dir": "Symfony/Component/Filesystem",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Filesystem.git",
+                "reference": "f73904bd2dae525c42ea1f0340c7c98480ecacde"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/f73904bd2dae525c42ea1f0340c7c98480ecacde",
+                "reference": "f73904bd2dae525c42ea1f0340c7c98480ecacde",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Filesystem\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Filesystem Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-05-08 00:09:07"
+        }
+    ],
+    "packages-dev": [
+        {
+            "name": "aschroder/smtp_pro",
+            "version": "2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aschroder/Magento-SMTP-Pro-Email-Extension.git",
+                "reference": "9027575503cba4af433dc66212f8dc84798eb6a0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aschroder/Magento-SMTP-Pro-Email-Extension/zipball/9027575503cba4af433dc66212f8dc84798eb6a0",
+                "reference": "9027575503cba4af433dc66212f8dc84798eb6a0",
+                "shasum": ""
+            },
+            "require": {
+                "magento-hackathon/magento-composer-installer": "*"
+            },
+            "type": "magento-module",
+            "extra": {
+                "map": [
+                    [
+                        "app/etc/modules/Aschroder_SMTPPro.xml",
+                        "app/etc/modules/Aschroder_SMTPPro.xml"
+                    ],
+                    [
+                        "app/code/local/Aschroder/SMTPPro",
+                        "app/code/local/Aschroder/SMTPPro"
+                    ],
+                    [
+                        "app/design/adminhtml/base/default/template/smtppro",
+                        "app/design/adminhtml/default/default/template/smtppro"
+                    ],
+                    [
+                        "app/locale/en_US/Aschroder_SMTPPro.csv",
+                        "app/locale/en_US/Aschroder_SMTPPro.csv"
+                    ]
+                ]
+            },
+            "authors": [
+                {
+                    "name": "aschroder"
+                }
+            ],
+            "description": "sending Magento mail through an external smtp-server",
+            "homepage": "https://github.com/aschroder/Magento-SMTP-Pro-Email-Extension",
+            "support": {
+                "source": "https://github.com/aschroder/Magento-SMTP-Pro-Email-Extension/tree/master",
+                "issues": "https://github.com/aschroder/Magento-SMTP-Pro-Email-Extension/issues"
+            },
+            "time": "2015-03-16 10:00:13"
+        },
+        {
+            "name": "colinmollenhour/modman",
+            "version": "1.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/colinmollenhour/modman.git",
+                "reference": "c45a6b2f5903dff8c8f029e50d5a93e73fb72793"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/colinmollenhour/modman/zipball/c45a6b2f5903dff8c8f029e50d5a93e73fb72793",
+                "reference": "c45a6b2f5903dff8c8f029e50d5a93e73fb72793",
+                "shasum": ""
+            },
+            "bin": [
+                "modman"
+            ],
+            "type": "library",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Colin Mollenhour"
+                }
+            ],
+            "description": "Module Manager",
+            "homepage": "https://github.com/colinmollenhour/modman",
+            "support": {
+                "source": "https://github.com/colinmollenhour/modman/tree/1.12",
+                "issues": "https://github.com/colinmollenhour/modman/issues"
+            },
+            "time": "2015-05-09 00:02:36"
+        }
+    ],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
